@@ -1,0 +1,80 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <div class="row border-bottom">
+      <div class="filter-list">
+        <h3 class='mb-3 text-capitalize'>{{category}}</h3>
+      </div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="sortby" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            SORT BY
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="sortby">
+            <li> <button class="btn btn-default filter-button" data-filter="products">All</button></li>
+       <li> <button class="btn btn-default filter-button" data-filter="low">Price, low to high</button></li>
+       <li> <button class="btn btn-default filter-button" data-filter="low">Price, high to low</button></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  
+    
+    <div class="row">
+      {% for d in products %}
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 product filter p-5 products">
+        <a href="{% url 'product-detail' d.id %}">
+          <img src="{{ d.product_img.url }}" title="Product name" alt="Product name">
+        </a>
+        <div class="info">
+          <div class="name">
+            {{d.title}}
+          </div>
+          <div class="price"> 
+            Rs. {{d.discounted_price }}
+          </div>
+        </div>
+        <div class="links">
+          <a href="{% url 'product-detail' d.id %}" class="more">See details</a>
+          {% comment %} <a href="#" class="add-to">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
+          </a> {% endcomment %}
+          <form action='/add-to-cart/' method='get' class='d-inline'>
+            <input type='hidden' value={{d.id}} name='prod_id' id='prod_id'>     
+            <button type='submit' class='add-to'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to Cart</button>
+        </form>
+        </div>
+      </div>
+  
+       {% endfor %}
+       {% for p in low %}
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 product filter p-5 low">
+        <a href="{% url 'product-detail' p.id %}">
+           <img src="{{ p.product_img.url }}" title="Product name" alt="Product name">
+         </a>
+         <div class="info">
+           <div class="name">
+             {{p.title}}
+           </div>
+           <div class="price"> 
+             Rs. {{p.discounted_price }}
+           </div>
+         </div>
+          <div class="links">
+           <a href="{% url 'product-detail' p.id %}" class="more">See details</a>
+           {% comment %} <a href="#" class="add-to">
+             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
+           </a> {% endcomment %}
+           <form action='/add-to-cart/' method='get' class='d-inline'>
+            <input type='hidden' value={{p.id}} name='prod_id' id='prod_id'>     
+            <button type='submit' class='add-to'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to Cart</button>
+        </form>
+         </div>
+       </div>
+        {% endfor %}
+     
+    </div>
+  </div>
+{% endblock main-content %}

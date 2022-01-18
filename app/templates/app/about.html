@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+  
+    <div class="row">
+     <div class="col-sm-6">
+       <div class="h-100 p-5 text-dark bg-white rounded-3">
+         <div class='p-5'>
+         <h2 style='font-family: -webkit-pictograph;font-size:60px;font-weight:200'>About Artify</h2>
+         <p style='font-family: -webkit-pictograph;font-size:20px;padding-top:10px;padding-bottom:10px'>
+          Art is a creative activity that expresses imaginative or technical skill. It produces a product, an object. 
+          Art is a diverse range of human activities in creating visual, performing artifacts, 
+          and expressing the author's imaginative mind. The product of art is called a work of art, for others to experience</p>
+         <a class="text-muted border border-dark p-2 text-decoration-none" href="{% url 'shop' %}">SHOP NOW</a>
+         </div>
+       </div>
+     </div>
+     <div class="col-sm-6">
+      <div class="card mb-3">
+        <div class="card-body">
+         <img src="{% static 'app/images/category/about2.jpg' %}" alt="" srcset="" width='100%'>
+        </div>
+      </div>
+     </div>
+    </div>
+   </div>
+{% endblock main-content %}

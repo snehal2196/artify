@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5" >
+    <div class="row border-bottom">
+        <div class="filter-list">
+          <h3 class='mb-1'>Products</h3>
+        </div>
+      </div>
+ <div class="row">
+  <div class="col-sm-2 p-3">
+    <span class='mb-4'>Categories</span>
+   <a href="{% url 'shop' 'all' %}" class="list-group-item list-group-item-action" aria-current="true">All</a>
+   <a href="{% url 'shop' 'drawing' %}" class="list-group-item list-group-item-action" aria-current="true">Drawing</a>
+   <a href="{% url 'shop' 'painting' %}" class="list-group-item list-group-item-action" aria-current="true">Painting</a>
+   <span class='mb-2'>Sort by</span>
+   <a href="{% url 'topwear' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">Price, low to high</a>
+   <a href="{% url 'topwear' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">Price, high to low</a>
+</div>
+  <div class="col-sm-9">
+    <div class='row mx-3'>
+        {% for d in products %}
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 product filter p-3 drawing">
+        <a href="{% url 'product-detail' d.id %}">
+          <img src="{{ d.product_img.url }}" title="Product name" alt="Product name">
+        </a>
+        <div class="info">
+          <div class="name">
+            {{d.title}}
+          </div>
+          <div class="price"> 
+            Rs. {{d.discounted_price }}
+          </div>
+        </div>
+        {% comment %} <div class="links">
+          <a href="{% url 'product-detail' d.id %}" class="more">See details</a>
+          <form action='/add-to-cart/' method='get' class='d-inline'>
+            <input type='hidden' value={{d.id}} name='prod_id' id='prod_id'>     
+            <button type='submit' class='add-to'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to Cart</button>
+        </form>
+        </div> {% endcomment %}
+      </div>
+  
+       {% endfor %}
+    </div>
+
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

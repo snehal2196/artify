@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Shop{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <div class="row border-bottom">
+      <div class="filter-list">
+        <h3 class='mb-3'>Products</h3>
+        <button class="btn btn-default filter-button active" data-filter="all">All</button>
+        <button class="btn btn-default filter-button" data-filter="drawing">Drawing</button>
+        <button class="btn btn-default filter-button" data-filter="painting">Painting</button>
+      </div>
+    </div>
+    <div class="row">
+      {% for d in drawing %}
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 product filter p-5 drawing">
+        <a href="{% url 'product-detail' d.id %}">
+          <img src="{{ d.product_img.url }}" title="Product name" alt="Product name">
+        </a>
+        <div class="info">
+          <div class="name">
+            {{d.title}}
+          </div>
+          <div class="price"> 
+            Rs. {{d.discounted_price }}
+          </div>
+        </div>
+        {% comment %} <div class="links">
+          <a href="{% url 'product-detail' d.id %}" class="more">See details</a> {% endcomment %}
+          {% comment %} <a href="#" class="add-to">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
+          </a> {% endcomment %}
+          
+          {% comment %} <form action='/add-to-cart/' method='get' class='d-inline'>
+            <input type='hidden' value={{d.id}} name='prod_id' id='prod_id'>     
+            <button type='submit' class='add-to'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to Cart</button>
+        </form>
+        </div> {% endcomment %}
+      </div>
+  
+       {% endfor %}
+       {% for p in painting %}
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 product filter p-5 painting">
+        <a href="{% url 'product-detail' p.id %}">
+           <img src="{{ p.product_img.url }}" title="Product name" alt="Product name">
+         </a>
+         <div class="info">
+           <div class="name">
+             {{p.title}}
+           </div>
+           <div class="price"> 
+             Rs. {{p.discounted_price }}
+           </div>
+         </div>
+          {% comment %} <div class="links">
+           <a href="{% url 'product-detail' p.id %}" class="more">See details</a> {% endcomment %}
+           {% comment %} <a href="#" class="add-to">
+             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
+           </a> {% endcomment %}
+           {% comment %} <form action='/add-to-cart/' method='get' class='d-inline'>
+            <input type='hidden' value={{p.id}} name='prod_id' id='prod_id'>     
+            <button type='submit' class='add-to'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to Cart</button>
+        </form>
+         </div> {% endcomment %}
+       </div>
+        {% endfor %}
+     
+    </div>
+  </div>
+{% endblock main-content %}
