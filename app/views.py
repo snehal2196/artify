@@ -268,12 +268,12 @@ def category(request, category=None):
         products = Product.objects.all()
     elif category == 'drawing':
         products = Product.objects.filter(category='D')
-        low = products.order_by('-discounted_price')
+        # low = products.order_by('-discounted_price')
     elif category == 'painting':
         products = Product.objects.filter(category='P')
     if request.user.is_authenticated:
         totalitems = len(Cart.objects.filter(user=request.user))
-    return render(request, 'app/category.html',{'products':products, 'category':category,'low':low,'totalitems':totalitems})
+    return render(request, 'app/category.html',{'products':products, 'category':category,'low':'low','totalitems':totalitems})
 
 
 def about(request):
