@@ -29,12 +29,10 @@
         </form> {% endcomment %}
        {% endif %}
        {% else %}
-       <span id='gotocart'>
-        <a href="{% url 'show_cart' %}" class="add-to"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Go To Cart</a>
-        </span>
-        <span id='addtocart'>
-        <a href="#" class="add-to btn-block" pid='{{product.id}}' id='addtocart'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-        </span>
+       <form action='/add-to-cart/' method='get' class='d-inline'>
+        <input type='hidden' value={{product.id}} name='prod_id' id='prod_id'>     
+        <button type='submit' class='add-to'><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to Cart</button>
+    </form>
        {% endif %}
    
    
