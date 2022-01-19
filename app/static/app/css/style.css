@@ -189,8 +189,7 @@
 }
 .links .add-to{
   margin-left: auto;
-  margin-right: 1em;
-  padding: 0.7em;
+  padding: 0.7em 100px 0.7em 100px;
   color: #fff;
   font-weight: 600;
   /* background-color: #75b545; */
@@ -202,4 +201,8 @@
 .links .add-to:hover{
   text-decoration: none;
   opacity: .9;
+}
+
+#gotocart{
+  display: none;
 }

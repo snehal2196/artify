@@ -31,11 +31,22 @@ class ProductDetailView(View):
 
 @login_required
 def add_to_cart(request):
-    user = request.user
-    product_id = request.GET.get('prod_id')
-    product = Product.objects.get(id=product_id)
-    Cart(user=user, product=product).save()
-    return redirect('/show_cart/')
+    totalitems =0
+    if request.method == 'GET':
+        user = request.user
+        product_id = request.GET['id']
+        product = Product.objects.get(id=product_id)
+        Cart(user=user, product=product).save()
+        totalitems = len(Cart.objects.filter(user=request.user))
+        already_in_cart = False
+        if request.user.is_authenticated:
+            already_in_cart = Cart.objects.filter(Q(product=product_id) & Q(user=request.user)).exists()
+
+        data = {
+            'totalitems':totalitems,
+            'in_cart':already_in_cart
+        }
+        return JsonResponse(data)
 
 @login_required
 def show_cart(request):

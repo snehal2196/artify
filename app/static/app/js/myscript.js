@@ -97,7 +97,6 @@ $(document).ready(function () {
 });
 
 
-
 jQuery(function($) {
   var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
   $('ul a').each(function() {
@@ -105,4 +104,27 @@ jQuery(function($) {
     $(this).addClass('active');
    }
   });
+ });
+
+ $(".add-to").click(function(){
+   var id = $(this).attr("pid").toString();
+   console.log(id)
+   $.ajax({
+     type: 'GET',
+     url: '/add-to-cart/',
+     data:{
+       id:id
+     },
+     success:function(data){
+       console.log(data)
+       document.getElementById('totalitems').innerText = data.totalitems;
+       if (data.in_cart){
+        document.getElementById('addtocart').style.display = 'none';
+        document.getElementById('gotocart').style.display = 'block';
+       }
+       
+       
+     }
+   })
+
  });
