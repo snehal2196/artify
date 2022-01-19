@@ -23,6 +23,7 @@
     <h4>Select Shipping Address</h4>
     <hr>
     <form action="/paymentdone/">
+      {% if address %}
       {% for add in address %}
       <div class="card">
         <div class="card-body">
@@ -36,10 +37,15 @@
             Address: {{forloop.counter}} </label>
         </div>
         {% endfor %}
+      
         <div class="text-end">
           <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
         </div>
-         
+         {% else %}
+         <p>You haven't added any address yet, Please add from your profile.</p>
+         <div class="text-end">
+          <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
+        </div>
       </form>
     </div>
   </div>
