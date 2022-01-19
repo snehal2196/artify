@@ -29,10 +29,9 @@
         </form> {% endcomment %}
        {% endif %}
        {% else %}
-       <form action='/add-to-cart/' method='get' class='d-inline'>
-        <input type='hidden' value={{product.id}} name='prod_id' id='prod_id'>     
-        <button type='submit' class='add-to'><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to Cart</button>
-    </form>
+       
+        <a href="{% url 'login' %}" class="add-to btn-block" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+        
        {% endif %}
    
    
