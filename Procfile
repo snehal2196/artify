@@ -1,1 +1,1 @@
-web: waitress-serve --port:$PORT artist.wsgi:application 
+web gunicorn artist.wsgi:application --log-file -
